@@ -1,0 +1,100 @@
+{
+  "cities": [
+    {
+      "cityName": "Lisbon",
+      "country": "Portugal",
+      "emoji": "🇵🇹",
+      "date": "2027-10-31T15:59:59.138Z",
+      "notes": "My favorite city so far!",
+      "position": {
+        "lat": 38.727881642324164,
+        "lng": -9.140900099907554
+      },
+      "id": "73930385"
+    },
+    {
+      "cityName": "Madrid",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2027-07-15T08:22:53.976Z",
+      "notes": "",
+      "position": {
+        "lat": 40.46635901755316,
+        "lng": -3.7133789062500004
+      },
+      "id": "17806751"
+    },
+    {
+      "cityName": "Berlin",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2027-02-12T09:24:11.863Z",
+      "notes": "Amazing 😃",
+      "position": {
+        "lat": 52.53586782505711,
+        "lng": 13.376933665713324
+      },
+      "id": "98443197"
+    },
+    {
+      "id": "7b57",
+      "cityName": "Orgaz",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2026-01-18T19:10:25.808Z",
+      "notes": "dddd",
+      "position": {
+        "lat": "39.67516309524393",
+        "lng": "-3.8452148437500004"
+      }
+    },
+    {
+      "id": "b5e4",
+      "cityName": "Paudalho",
+      "country": "Brazil",
+      "emoji": "🇧🇷",
+      "date": "2026-01-18T19:30:03.248Z",
+      "notes": "pau de alho",
+      "position": {
+        "lat": "-7.86803527972828",
+        "lng": "-35.15625000000001"
+      }
+    },
+    {
+      "id": "4104",
+      "cityName": "Parroquia Aripao",
+      "country": "Venezuela (Bolivarian Republic of)",
+      "emoji": "🇻🇪",
+      "date": "2026-01-19T14:21:49.208Z",
+      "notes": "trump",
+      "position": {
+        "lat": "7.104800922984794",
+        "lng": "-64.95117187500001"
+      }
+    },
+    {
+      "id": "4138",
+      "cityName": "Avia",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2026-01-19T14:24:50.650Z",
+      "notes": "",
+      "position": {
+        "lat": "42.06660992598761",
+        "lng": "1.8017578125000002"
+      }
+    },
+    {
+      "id": "8e3c",
+      "cityName": "Epila",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2026-01-19T14:27:59.269Z",
+      "notes": "epika",
+      "position": {
+        "lat": "41.62480256711276",
+        "lng": "-1.4501953125000002"
+      }
+    }
+  ]
+}
