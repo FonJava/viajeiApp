@@ -76,7 +76,7 @@ function CitiesProvider({ children }) {
       } catch {
         dispatch({
           type: "rejected",
-          payload: "There was an error loading data...",
+          payload: "Ocorreu um erro ao carregar os dados...",
         });
       }
     }
@@ -95,7 +95,7 @@ function CitiesProvider({ children }) {
       } catch {
         dispatch({
           type: "rejected",
-          payload: "There was an error loading city...",
+          payload: "Ocorreu um erro ao carregar a cidade...",
         });
       }
     },
@@ -112,13 +112,16 @@ function CitiesProvider({ children }) {
           "Content-Type": "application/json",
         },
       });
+      if (!res.ok) throw new Error("Falha ao salvar a cidade");
       const data = await res.json();
       dispatch({ type: "city/created", payload: data });
+      return true;
     } catch {
       dispatch({
         type: "rejected",
-        payload: "There was an error creating city...",
+        payload: "Ocorreu um erro ao criar a cidade...",
       });
+      return false;
     }
   }
 
@@ -132,7 +135,7 @@ function CitiesProvider({ children }) {
     } catch {
       dispatch({
         type: "rejected",
-        payload: "There was an error deleting city...",
+        payload: "Ocorreu um erro ao excluir a cidade...",
       });
     }
   }

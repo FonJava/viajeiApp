@@ -44,13 +44,13 @@ function Form() {
           setIsLoadingGeocoding(true);
           setGeocodingError("");
           const res = await fetch(
-            `${BASE_URL}?latitude=${lat}&longitude=${lng}`
+            `${BASE_URL}?latitude=${lat}&longitude=${lng}`,
           );
           const data = await res.json();
 
           if (!data.countryCode)
             throw new Error(
-              "That doesn't seem to be a city. Click somewhere else 😉"
+              "Isso não parece ser uma cidade. Clique em outro lugar 😉",
             );
 
           setCityName(data.city || data.locality || "");
@@ -64,7 +64,7 @@ function Form() {
       }
       fetchCityData();
     },
-    [lat, lng]
+    [lat, lng],
   );
 
   async function handleSubmit(e) {
@@ -79,14 +79,14 @@ function Form() {
       notes,
       position: { lat, lng },
     };
-    await createCity(newCity);
-    navigate("/app");
+    const cityCreated = await createCity(newCity);
+    if (cityCreated) navigate("/app");
   }
 
   if (isLoadingGeocoding) return <Spinner />;
 
   if (!lat && !lng)
-    return <Message message="Start by clicking somewhere on the map 🌍" />;
+    return <Message message="Comece clicando em algum lugar do mapa 🌍" />;
 
   if (geoCodingError)
     return <Message message={geoCodingError}>{geoCodingError}</Message>;
@@ -97,7 +97,7 @@ function Form() {
       onSubmit={handleSubmit}
     >
       <div className={styles.row}>
-        <label htmlFor="cityName">City name</label>
+        <label htmlFor="cityName">Nome da cidade</label>
         <input
           id="cityName"
           onChange={(e) => setCityName(e.target.value)}
@@ -107,7 +107,7 @@ function Form() {
       </div>
 
       <div className={styles.row}>
-        <label htmlFor="date">When did you go to {cityName}?</label>
+        <label htmlFor="date">Quando você visitou {cityName}?</label>
 
         <DatePicker
           id="date"
@@ -118,7 +118,7 @@ function Form() {
       </div>
 
       <div className={styles.row}>
-        <label htmlFor="notes">Notes about your trip to {cityName}</label>
+        <label htmlFor="notes">Anotações sobre sua viagem a {cityName}</label>
         <textarea
           id="notes"
           onChange={(e) => setNotes(e.target.value)}
@@ -127,7 +127,7 @@ function Form() {
       </div>
 
       <div className={styles.buttons}>
-        <Button type="primary">Add</Button>
+        <Button type="primary">Adicionar</Button>
         <BackButton />
       </div>
     </form>

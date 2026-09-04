@@ -32,3 +32,30 @@
 .product section a {
   margin-top: 2rem;
 }
+
+@media (max-width: 650px) {
+  .product {
+    margin: 1.2rem;
+    padding: 1.8rem 1.6rem 3rem;
+  }
+
+  .product section {
+    width: 100%;
+    margin: 4rem auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .product section > div {
+    order: 1;
+  }
+
+  .product section > img {
+    order: 2;
+  }
+
+  .product h2 {
+    font-size: 3.2rem;
+  }
+}

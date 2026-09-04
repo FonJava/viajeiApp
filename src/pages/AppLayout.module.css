@@ -5,3 +5,14 @@
   display: flex;
   position: relative;
 }
+
+@media (max-width: 650px) {
+  .app {
+    height: auto;
+    min-height: 100vh;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+}

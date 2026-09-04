@@ -3,7 +3,7 @@ import styles from "./CityItem.module.css";
 import { Link } from "react-router-dom";
 
 const formatDate = (date) =>
-  new Intl.DateTimeFormat("en", {
+  new Intl.DateTimeFormat("pt-BR", {
     day: "numeric",
     month: "long",
     year: "numeric",

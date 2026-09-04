@@ -15,8 +15,8 @@ function User() {
   return (
     <div className={styles.user}>
       <img src={user.avatar} alt={user.name} />
-      <span>Welcome, {user.name}</span>
-      <button onClick={handleClick}>Logout</button>
+      <span>Olá, {user.name}</span>
+      <button onClick={handleClick}>Sair</button>
     </div>
   );
 }
@@ -26,9 +26,9 @@ export default User;
 /*
 CHALLENGE
 
-1) Add `AuthProvider` to `App.jsx`
-2) In the `Login.jsx` page, call `login()` from context
-3) Inside an effect, check whether `isAuthenticated === true`. If so, programatically navigate to `/app`
-4) In `User.js`, read and display logged in user from context (`user` object). Then include this component in `AppLayout.js`
-5) Handle logout button by calling `logout()` and navigating back to `/`
+1) Adicione `AuthProvider` ao `App.jsx`
+2) Na página `Login.jsx`, chame `login()` pelo contexto
+3) Dentro de um efeito, verifique se `isAuthenticated === true`. Se sim, navegue para `/app`
+4) Em `User.js`, leia e exiba o usuário conectado pelo contexto (`user`). Inclua este componente em `AppLayout.js`
+5) Faça o botão de saída chamar `logout()` e navegar de volta para `/`
 */

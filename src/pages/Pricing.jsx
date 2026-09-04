@@ -9,17 +9,19 @@ export default function Product() {
       <section>
         <div>
           <h2>
-            Simple pricing.
+            Preço simples.
             <br />
-            Just $9/month.
+            Apenas US$ 9/mês.
           </h2>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae vel
-            labore mollitia iusto. Recusandae quos provident, laboriosam fugit
-            voluptatem iste.
+            Tudo o que você precisa para organizar suas viagens por um preço
+            direto e transparente.
           </p>
         </div>
-        <img src="img-2.jpg" alt="overview of a large city with skyscrapers" />
+        <img
+          src="https://img.freepik.com/free-photo/traveling-concept-with-world-map_23-2149153259.jpg"
+          alt="mapa-múndi e elementos de viagem"
+        />
       </section>
     </main>
   );

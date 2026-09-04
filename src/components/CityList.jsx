@@ -10,7 +10,7 @@ function CityList() {
 
   if (!cities.length)
     return (
-      <Message message="Add your first city by clicking on a city on the map" />
+      <Message message="Adicione sua primeira cidade clicando em um ponto do mapa" />
     );
   return (
     <ul className={styles.cityList}>

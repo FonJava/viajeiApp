@@ -7,21 +7,20 @@ export default function Product() {
       <PageNav />
       <section>
         <img
-          src="img-1.jpg"
-          alt="person with dog overlooking mountain with sunset"
+          src="https://img.freepik.com/free-photo/portrait-handsome-man-smiling_23-2148868324.jpg"
+          alt="viajante observando uma paisagem de montanhas"
+          /*  */
         />
         <div>
-          <h2>About WorldWide.</h2>
+          <h2>Sobre o Viajei.</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo est
-            dicta illum vero culpa cum quaerat architecto sapiente eius non
-            soluta, molestiae nihil laborum, placeat debitis, laboriosam at fuga
-            perspiciatis?
+            O Viajei ajuda você a guardar cada lembrança da estrada em um só
+            lugar. Registre cidades, países e as histórias que tornam cada
+            viagem especial.
           </p>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis
-            doloribus libero sunt expedita ratione iusto, magni, id sapiente
-            sequi officiis et.
+            Consulte suas descobertas no mapa e reviva o caminho percorrido
+            sempre que quiser.
           </p>
         </div>
       </section>

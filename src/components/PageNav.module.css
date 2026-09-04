@@ -27,8 +27,35 @@
 
 a.ctaLink:link,
 a.ctaLink:visited {
-  background-color: var(--color-brand--2);
+  background: linear-gradient(
+    120deg,
+    var(--color-brand--1),
+    var(--color-brand--2)
+  );
   color: var(--color-dark--0);
   padding: 0.8rem 2rem;
   border-radius: 7px;
+}
+
+@media (max-width: 650px) {
+  .nav {
+    align-items: flex-start;
+    gap: 1.2rem;
+  }
+
+  .nav ul {
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .nav a:link,
+  .nav a:visited {
+    font-size: 1.1rem;
+  }
+
+  a.ctaLink:link,
+  a.ctaLink:visited {
+    padding: 0.7rem 1rem;
+  }
 }

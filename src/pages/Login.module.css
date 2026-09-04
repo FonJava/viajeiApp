@@ -24,3 +24,16 @@
   flex-direction: column;
   gap: 0.5rem;
 }
+
+@media (max-width: 650px) {
+  .login {
+    margin: 1.2rem;
+    padding: 1.8rem 1.6rem 3rem;
+  }
+
+  .form {
+    width: 100%;
+    margin: 5rem auto 0;
+    padding: 1.8rem;
+  }
+}

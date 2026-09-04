@@ -10,7 +10,7 @@ function BackButton() {
         navigate(-1);
       }}
     >
-      &larr; Back
+      &larr; Voltar
     </Button>
   );
 }

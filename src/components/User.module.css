@@ -32,3 +32,14 @@
   text-transform: uppercase;
   cursor: pointer;
 }
+
+@media (max-width: 650px) {
+  .user {
+    position: static;
+    align-self: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    font-size: 1.4rem;
+  }
+}
