@@ -5,8 +5,10 @@ import Message from "./Message.jsx";
 import { useCities } from "../contexts/CitiesContext.jsx";
 
 function CityList() {
-  const { cities, isLoading } = useCities();
+  const { cities, isLoading, error } = useCities();
   if (isLoading) return <Spinner />;
+
+  if (error) return <Message message={error} />;
 
   if (!cities.length)
     return (

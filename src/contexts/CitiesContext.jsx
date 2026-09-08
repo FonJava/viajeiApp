@@ -1,13 +1,21 @@
 import {
   createContext,
-  useState,
   useEffect,
   useContext,
   useReducer,
   useCallback,
 } from "react";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+} from "firebase/firestore";
+import { db } from "../firebase.js";
 
-const BASE_URL = "http://localhost:9000/cities";
+const citiesCollection = collection(db, "cities");
 
 const CitiesContext = createContext();
 
@@ -17,6 +25,21 @@ const initialState = {
   currentCity: {},
   error: "",
 };
+
+function normalizeCity(snapshot) {
+  const city = snapshot.data();
+  const lat = Number(city.position?.lat ?? city.lat ?? city.latitude);
+  const lng = Number(city.position?.lng ?? city.lng ?? city.longitude);
+
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+
+  return {
+    ...city,
+    id: snapshot.id,
+    position: { lat, lng },
+    date: city.date?.toDate ? city.date.toDate() : new Date(city.date),
+  };
+}
 
 function reducer(state, action) {
   switch (action.type) {
@@ -70,13 +93,14 @@ function CitiesProvider({ children }) {
     async function fetchCities() {
       dispatch({ type: "loading" });
       try {
-        const res = await fetch(BASE_URL);
-        const data = await res.json();
+        const snapshot = await getDocs(citiesCollection);
+        const data = snapshot.docs.map(normalizeCity).filter(Boolean);
         dispatch({ type: "cities/loaded", payload: data });
-      } catch {
+      } catch (error) {
+        console.error("Erro ao carregar cidades do Firestore:", error);
         dispatch({
           type: "rejected",
-          payload: "Ocorreu um erro ao carregar os dados...",
+          payload: "Não foi possível carregar as cidades do Firestore.",
         });
       }
     }
@@ -85,17 +109,20 @@ function CitiesProvider({ children }) {
 
   const getCity = useCallback(
     async function getCity(id) {
-      if (Number(id) === currentCity.id) return;
+      if (id === currentCity.id) return;
 
       dispatch({ type: "loading" });
       try {
-        const res = await fetch(`${BASE_URL}/${id}`);
-        const data = await res.json();
-        dispatch({ type: "city/loaded", payload: data });
-      } catch {
+        const snapshot = await getDoc(doc(db, "cities", id));
+        if (!snapshot.exists()) throw new Error("Cidade não encontrada");
+        const city = normalizeCity(snapshot);
+        if (!city) throw new Error("A cidade não possui coordenadas válidas");
+        dispatch({ type: "city/loaded", payload: city });
+      } catch (error) {
+        console.error("Erro ao carregar cidade do Firestore:", error);
         dispatch({
           type: "rejected",
-          payload: "Ocorreu um erro ao carregar a cidade...",
+          payload: "Não foi possível carregar esta cidade do Firestore.",
         });
       }
     },
@@ -105,21 +132,20 @@ function CitiesProvider({ children }) {
   async function createCity(newCity) {
     dispatch({ type: "loading" });
     try {
-      const res = await fetch(BASE_URL, {
-        method: "POST",
-        body: JSON.stringify(newCity),
-        headers: {
-          "Content-Type": "application/json",
-        },
+      const cityReference = await addDoc(citiesCollection, newCity);
+      const snapshot = await getDoc(cityReference);
+      const city = normalizeCity(snapshot);
+      if (!city) throw new Error("A cidade não possui coordenadas válidas");
+      dispatch({
+        type: "city/created",
+        payload: city,
       });
-      if (!res.ok) throw new Error("Falha ao salvar a cidade");
-      const data = await res.json();
-      dispatch({ type: "city/created", payload: data });
       return true;
-    } catch {
+    } catch (error) {
+      console.error("Erro ao criar cidade no Firestore:", error);
       dispatch({
         type: "rejected",
-        payload: "Ocorreu um erro ao criar a cidade...",
+        payload: "Não foi possível salvar a cidade no Firestore.",
       });
       return false;
     }
@@ -128,14 +154,13 @@ function CitiesProvider({ children }) {
   async function deleteCity(id) {
     dispatch({ type: "loading" });
     try {
-      const res = await fetch(`${BASE_URL}/${id}`, {
-        method: "DELETE",
-      });
+      await deleteDoc(doc(db, "cities", id));
       dispatch({ type: "city/deleted", payload: id });
-    } catch {
+    } catch (error) {
+      console.error("Erro ao excluir cidade do Firestore:", error);
       dispatch({
         type: "rejected",
-        payload: "Ocorreu um erro ao excluir a cidade...",
+        payload: "Não foi possível excluir a cidade do Firestore.",
       });
     }
   }
